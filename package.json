@@ -1,11 +1,27 @@
 {
   "name": "npm-begin",
   "version": "0.0.1",
-  "description": "",
+  "description": "npm init helper",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "plusmancn@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "co": "^4.6.0",
+    "request": "^2.69.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plusmancn/npm-begin.git"
+  },
+  "keywords": [
+    "npm-begin"
+  ],
+  "bugs": {
+    "url": "https://github.com/plusmancn/npm-begin/issues"
+  },
+  "homepage": "https://github.com/plusmancn/npm-begin#readme"
 }
