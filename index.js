@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 'use strict';
 const co = require('co');
 const question = require('./lib/question.js');
@@ -8,6 +10,7 @@ const rl = readline.createInterface(process.stdin, process.stdout);
 // libs
 var libGitignore = require('./lib/gitignore.js');
 var libJshintrc  = require('./lib/jshintrc.js');
+var libMkdir = require('./lib/mkdir.js');
 
 
 // Choose .gitignore
@@ -40,7 +43,7 @@ function jshintrc(){
                 co(function *(){
                     return libJshintrc('plusmancn/.node.jshintrc');
                 }).then(function(){
-                    rl.close();
+                    mkdir();
                 }).catch(function(err){
                     console.error(err);
                     rl.close();
@@ -54,25 +57,30 @@ function jshintrc(){
 }
 
 
+// mkdir
+function mkdir(){
+    rl.question(question.mkdir, (answer) => {
+        switch(answer.trim()){
+            case 'y':
+                libMkdir();
+                rl.close();
+                break;
+            default:
+                console.info('Skipping create folders');
+                rl.close();
+                break;
+        }
+    });
+}
 
-rl.on('line', (line) => {
-  switch(line.trim()) {
-    case 'hello':
-      console.log('world!');
-      break;
-    default:
-      console.log('Say what? I might have heard `' + line.trim() + '`');
-      break;
-  }
-  rl.prompt();
-}).on('close', () => {
-  console.log('🙂  Well begun is half done!');
+
+rl.on('close', () => {
+  console.log('\n🙂  Well begun is half done!');
   process.exit(0);
 });
 
 // rl.prompt();
 // rl.close();
-
 
 // init
 gitignore();
