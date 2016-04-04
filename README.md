@@ -30,7 +30,8 @@ Auto creating following folders and files
     * ./test
 
 ## License
-
+See license detail, Please go to [Choose a license](http://choosealicense.com/licenses/)  
+![Choose a license](https://raw.githubusercontent.com/plusmancn/npm-begin/master/license/popular-license.png)
 
 ## Todo
  * Proxy Module
