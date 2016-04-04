@@ -1,6 +1,6 @@
 {
   "name": "npm-begin",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "npm init helper",
   "main": "index.js",
   "scripts": {

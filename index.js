@@ -11,7 +11,7 @@ const rl = readline.createInterface(process.stdin, process.stdout);
 var libGitignore = require('./lib/gitignore.js');
 var libJshintrc  = require('./lib/jshintrc.js');
 var libMkdir = require('./lib/mkdir.js');
-
+var libLicense = require('./lib/license.js');
 
 // Choose .gitignore
 function gitignore(){
@@ -29,6 +29,7 @@ function gitignore(){
                 break;
             default:
                 console.log('Not Support');
+                rl.close();
                 break;
         }
     });
@@ -51,6 +52,7 @@ function jshintrc(){
                 break;
             default:
                 console.log('Not Support');
+                rl.close();
                 break;
         }
     });
@@ -63,7 +65,7 @@ function mkdir(){
         switch(answer.trim()){
             case 'y':
                 libMkdir();
-                rl.close();
+                license();
                 break;
             default:
                 console.info('Skipping create folders');
@@ -73,14 +75,31 @@ function mkdir(){
     });
 }
 
+// license
+function license(){
+    rl.question(question.license, (answer) => {
+        switch(answer.trim()){
+            case '1':
+                libLicense('ISC');
+                rl.close();
+                break;
+            case '2':
+                libLicense('MIT');
+                rl.close();
+                break;
+            default:
+                console.info('Not Support');
+                rl.close();
+                break;
+
+        }
+    });
+}
 
 rl.on('close', () => {
   console.log('\n🙂  Well begun is half done!');
   process.exit(0);
 });
-
-// rl.prompt();
-// rl.close();
 
 // init
 gitignore();
