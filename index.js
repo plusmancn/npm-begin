@@ -31,7 +31,7 @@ function gitignore(){
         console.log(tips);
 
         let result = yield inquirer.prompt(schema);
-        return yield libGitignore.generate(result.gitignore.split(' + '));
+        return libGitignore.generate(result.gitignore.split(' + '));
     })
     .then(function(){
         eslintrc();
@@ -62,9 +62,9 @@ function eslintrc(){
 
     co(function *(){
         let result = yield inquirer.prompt(schema);
-        libEslintrc(result.eslintrc);
+        return libEslintrc(result.eslintrc);
     }).then(function(){
-        console.log('\n🙂 ' + ' >>> '.green + ' Well begun is half done!'.rainbow);
+        console.log('------------------------------------------'.white + '\n🙂 ' + ' >>> '.green + ' Well begun is half done!'.rainbow);
     }).catch(function(err){
         console.error(err);
     });
