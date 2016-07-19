@@ -13,8 +13,9 @@ const inquirer = require('inquirer');
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
 
 // libs
-var libGitignore = require('./lib/gitignore.js');
-var libEslintrc  = require('./lib/eslintrc.js');
+const libGitignore = require('./lib/gitignore.js');
+const libEslintrc  = require('./lib/eslintrc.js');
+const libMakefile = require('./lib/makefile.js');
 
 // Choose .gitignore
 function gitignore(){
@@ -42,7 +43,7 @@ function gitignore(){
 }
 
 
-// Choose .jshintrc
+// Choose .eslintrc
 function eslintrc(){
     let schema = [{
         type: 'list',
@@ -64,12 +65,34 @@ function eslintrc(){
         let result = yield inquirer.prompt(schema);
         return libEslintrc(result.eslintrc);
     }).then(function(){
-        console.log('------------------------------------------'.white + '\n🙂 ' + ' >>> '.green + ' Well begun is half done!'.rainbow);
+        makefile();
     }).catch(function(err){
         console.error(err);
     });
 }
 
+
+// Choose makefile
+function makefile(){
+    let schema = [{
+        type: 'list',
+        name: 'makefile',
+        message:  'Makefile 模板',
+        choices: [{
+            name: 'default',
+            value: 'default'
+        }]
+    }];
+
+    co(function *(){
+        let result = yield inquirer.prompt(schema);
+        libMakefile(result.makefile);
+    }).then(function(){
+        console.log('------------------------------------------'.white + '\n🙂 ' + ' >>> '.green + ' Well begun is half done!'.rainbow);
+    }).catch(function(err){
+        console.error(err);
+    });
+}
 
 // main
 gitignore();

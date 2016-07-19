@@ -29,6 +29,13 @@
         ],
         "guard-for-in": [
             "error"
+        ],
+        "strict": [
+            "error",
+            "global"
+        ],
+        "no-var": [
+            "error"
         ]
     },
     "globals":{
